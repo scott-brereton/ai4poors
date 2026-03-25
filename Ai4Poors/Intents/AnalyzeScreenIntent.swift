@@ -258,7 +258,7 @@ struct AnalyzeMessageIntent: AppIntent {
         }
 
         // Debounce: skip if we analyzed a message from this sender within 30 seconds
-        let debounceKey = "cortex_last_message_\(sender)"
+        let debounceKey = "ai4poors_last_message_\(sender)"
         if let lastAnalysis = AppGroupConstants.sharedDefaults?.object(forKey: debounceKey) as? Date,
            Date().timeIntervalSince(lastAnalysis) < 30 {
             intentLog("Skipped: debounced (\(sender)), last analysis \(Date().timeIntervalSince(lastAnalysis))s ago")
@@ -282,7 +282,7 @@ struct AnalyzeMessageIntent: AppIntent {
             content.title = "Ai4Poors: \(sender)"
             content.body = String(result.prefix(200))
             content.sound = .default
-            content.categoryIdentifier = "cortex_message"
+            content.categoryIdentifier = "ai4poors_message"
             content.userInfo = ["result": result, "sender": sender]
 
             let request = UNNotificationRequest(

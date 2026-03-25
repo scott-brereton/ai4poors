@@ -18,7 +18,7 @@
 
 Apple Intelligence requires an iPhone 15 Pro. That's a thousand-dollar entrance fee to summarize a webpage. We thought that was stupid, so we built this instead.
 
-Ai4Poors is an open-source iOS app that works on any iPhone running iOS 17+. The one in your pocket with the cracked screen and the battery that dies at 40%? That one works. It hooks into six system extension points, so you get AI in any text field, in Safari, from the share sheet, through screen capture, via clipboard monitoring, and on the Lock Screen.
+Ai4Poors is an open-source iOS app that works on any iPhone running iOS 17+. The one in your pocket with the cracked screen and the battery that dies at 40%? That one works. It ships four extension targets (keyboard, Safari, share sheet, and screen broadcast) plus in-app clipboard monitoring and Live Activity on the Lock Screen — so you get AI practically everywhere.
 
 It also transcribes speech on-device (nothing leaves your phone), searches your photo library by description ("the blurry one of my cat on the fridge"), and has a macOS companion that reads your iMessage conversations and syncs analysis back to your phone.
 
@@ -89,7 +89,7 @@ The macOS companion syncs over CloudKit with a private database tied to your App
 ### Step 1: Clone and configure
 
 ```bash
-git clone https://github.com/example/ai4poors.git
+git clone https://github.com/scott-brereton/ai4poors.git
 cd ai4poors
 ```
 
@@ -126,6 +126,24 @@ You must update the bundle identifier in **all seven targets**:
 | Ai4PoorsMac | `com.example.ai4poors.mac` |
 
 Also update the App Group identifier in each target's entitlements file to match (e.g., `group.com.yourname.ai4poors`), and update the `suiteName` in `Shared/AppGroupConstants.swift`.
+
+#### Additional identifiers to update
+
+Beyond the bundle IDs above, the following hardcoded `com.example.ai4poors` references will cause runtime failures if not updated to match your own prefix:
+
+| File | Value | What breaks |
+|------|-------|-------------|
+| `Ai4Poors/Info.plist` | `com.example.ai4poors.background-processing` | BGTaskScheduler won't fire |
+| `Ai4Poors/Views/CaptureSearchView.swift:496` | `com.example.ai4poors.broadcast` | Screen capture won't find the extension |
+| `Shared/KeychainService.swift` | `com.example.ai4poors.skills` | Keychain reads/writes fail |
+| `Ai4PoorsWidgets/Ai4PoorsControlWidget.swift` | `com.example.ai4poors.control` | Control widget won't register |
+| `Ai4PoorsMac/CloudKitSyncService.swift` | `iCloud.com.example.ai4poors` | CloudKit sync fails |
+| `Ai4Poors/CloudKitReceiver.swift` | `iCloud.com.example.ai4poors` | CloudKit sync fails |
+| Entitlements files (main app + Mac) | `iCloud.com.example.ai4poors` | iCloud container mismatch |
+
+> **Note:** `DEVELOPMENT_TEAM` is set at the project level (not per-target), so changing it in `project.yml` or the project-level build settings is sufficient — you don't need to set it on each target individually.
+
+> **Note:** The Ai4PoorsMac entitlements file declares an App Group, but App Groups are unused on macOS in this project. You don't need to update that entry.
 
 ### Step 3: Resolve dependencies
 

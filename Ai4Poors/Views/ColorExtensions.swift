@@ -55,7 +55,7 @@ struct Ai4PoorsCardModifier: ViewModifier {
 }
 
 extension View {
-    func cortexCard(elevated: Bool = false) -> some View {
+    func ai4poorsCard(elevated: Bool = false) -> some View {
         modifier(Ai4PoorsCardModifier(elevated: elevated))
     }
 }

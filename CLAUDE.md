@@ -26,10 +26,10 @@ xcrun devicectl device install app \
   --device YOUR_DEVICECTL_ID \
   build/DerivedData/Build/Products/Debug-iphoneos/Ai4Poors.app
 
-# Launch
+# Launch (replace with your bundle ID from Step 2)
 xcrun devicectl device process launch \
   --device YOUR_DEVICECTL_ID \
-  com.example.ai4poors
+  your.bundle.id.here
 ```
 
 If SPM packages fail, re-resolve:

@@ -108,10 +108,10 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
                 logger.info("Analysis complete, \(result.count) chars")
 
-                let cortexAction = Ai4PoorsAction(rawValue: action) ?? .custom
+                let ai4poorsAction = Ai4PoorsAction(rawValue: action) ?? .custom
                 HistoryService.save(
                     channel: .safari,
-                    action: cortexAction,
+                    action: ai4poorsAction,
                     inputPreview: title.isEmpty ? contentToAnalyze : title,
                     result: result,
                     model: model,

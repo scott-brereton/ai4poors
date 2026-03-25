@@ -10,7 +10,7 @@ import os.log
 import UIKit
 #endif
 
-private let cortexLog = Logger(subsystem: "com.example.ai4poors", category: "ToolUse")
+private let ai4poorsLog = Logger(subsystem: "com.example.ai4poors", category: "ToolUse")
 
 actor OpenRouterService {
 

@@ -127,7 +127,7 @@ struct VoiceView: View {
             Spacer()
         }
         .padding(Ai4PoorsDesign.Spacing.md)
-        .cortexCard()
+        .ai4poorsCard()
     }
 
     // MARK: - Quick Actions
@@ -296,7 +296,7 @@ struct VoiceView: View {
                     .buttonStyle(.plain)
                     .padding(.vertical, 6)
                     .padding(.horizontal, Ai4PoorsDesign.Spacing.md)
-                    .cortexCard()
+                    .ai4poorsCard()
                     .contextMenu {
                         Button {
                             UIPasteboard.general.string = record.displayText

@@ -364,7 +364,7 @@ struct HomeView: View {
         }
         .padding(Ai4PoorsDesign.Spacing.md)
         .frame(maxWidth: .infinity)
-        .cortexCard(elevated: true)
+        .ai4poorsCard(elevated: true)
     }
 
     private func errorCard(_ error: String) -> some View {
@@ -533,7 +533,7 @@ struct HomeView: View {
         }
         .padding(Ai4PoorsDesign.Spacing.xl)
         .frame(maxWidth: .infinity)
-        .cortexCard()
+        .ai4poorsCard()
     }
 
     // MARK: - Compact Quick Actions Row
@@ -762,7 +762,7 @@ struct ActivityCard: View {
                 }
             }
             .padding(Ai4PoorsDesign.Spacing.md)
-            .cortexCard()
+            .ai4poorsCard()
         }
         .buttonStyle(.plain)
         .contextMenu {

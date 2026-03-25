@@ -102,7 +102,7 @@ struct HistoryView: View {
             }
             .toast(isShowing: $showCopyToast, message: "Copied to clipboard")
         }
-        .onReceive(NotificationCenter.default.publisher(for: .cortexSaveRecord)) { notification in
+        .onReceive(NotificationCenter.default.publisher(for: .ai4poorsSaveRecord)) { notification in
             if let record = notification.object as? AnalysisRecord {
                 modelContext.insert(record)
                 try? modelContext.save()

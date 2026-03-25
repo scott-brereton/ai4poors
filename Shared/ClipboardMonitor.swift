@@ -372,7 +372,7 @@ final class ClipboardMonitor: NSObject, ObservableObject {
         content.title = "Ai4Poors: Clipboard"
         content.body = String(body.prefix(200))
         content.sound = .default
-        content.categoryIdentifier = "cortex_clipboard"
+        content.categoryIdentifier = "ai4poors_clipboard"
         content.userInfo = ["result": body]
 
         let request = UNNotificationRequest(

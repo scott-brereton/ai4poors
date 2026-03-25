@@ -67,11 +67,11 @@ enum AppGroupConstants {
     #if os(macOS)
     static var sharedContainerURL: URL? {
         let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-        let cortexDir = appSupport?.appendingPathComponent("Ai4PoorsMac", isDirectory: true)
-        if let dir = cortexDir, !FileManager.default.fileExists(atPath: dir.path) {
+        let ai4poorsDir = appSupport?.appendingPathComponent("Ai4PoorsMac", isDirectory: true)
+        if let dir = ai4poorsDir, !FileManager.default.fileExists(atPath: dir.path) {
             try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         }
-        return cortexDir
+        return ai4poorsDir
     }
     #else
     static var sharedContainerURL: URL? {

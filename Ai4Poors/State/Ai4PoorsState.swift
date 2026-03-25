@@ -162,7 +162,7 @@ final class Ai4PoorsAppState: ObservableObject {
         )
         // Persist via notification to ModelContext holder
         NotificationCenter.default.post(
-            name: .cortexSaveRecord,
+            name: .ai4poorsSaveRecord,
             object: record
         )
     }
@@ -175,4 +175,4 @@ final class Ai4PoorsAppState: ObservableObject {
     }
 }
 
-// cortexSaveRecord moved to Shared/Models.swift
+// ai4poorsSaveRecord moved to Shared/Models.swift

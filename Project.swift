@@ -5,7 +5,7 @@
 // Use this as a reference when setting up the .xcodeproj.
 //
 // ┌─────────────────────────────────────────────────────────────────────┐
-// │                      CORTEX PROJECT TARGETS                        │
+// │                      AI4POORS PROJECT TARGETS                       │
 // ├─────────────────────────────────────────────────────────────────────┤
 // │                                                                     │
 // │  1. Ai4Poors (Main App)                                               │

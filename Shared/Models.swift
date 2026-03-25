@@ -314,7 +314,7 @@ struct PageContent: Codable {
 
 extension Notification.Name {
     static let ai4poorsShowResult = Notification.Name("ai4poorsShowResult")
-    static let cortexSaveRecord = Notification.Name("cortexSaveRecord")
+    static let ai4poorsSaveRecord = Notification.Name("ai4poorsSaveRecord")
 }
 
 // MARK: - Ai4Poors Errors

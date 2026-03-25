@@ -8,8 +8,8 @@
     'use strict';
 
     // Prevent double injection
-    if (window.__cortexInjected) return;
-    window.__cortexInjected = true;
+    if (window.__ai4poorsInjected) return;
+    window.__ai4poorsInjected = true;
 
     // Don't inject on extension pages or blank pages
     if (location.protocol === 'safari-extension:' ||
