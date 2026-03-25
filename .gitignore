@@ -30,6 +30,12 @@ Package.resolved
 *.xcconfig
 ExportOptions.plist
 
+# CocoaPods
+Pods/
+
+# Claude Code
+.claude/
+
 # Misc
 *.swp
 *~
