@@ -1,0 +1,683 @@
+/* content.css - Ai4Poors Safari Extension styles */
+
+/* ── Trigger Button ── */
+
+#ai4poors-trigger {
+    position: fixed;
+    bottom: 80px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2147483646;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+    opacity: 0.5;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    font-family: -apple-system, system-ui, sans-serif;
+    line-height: 1;
+}
+
+#ai4poors-trigger:hover,
+#ai4poors-trigger:focus {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    outline: none;
+}
+
+#ai4poors-trigger:active {
+    transform: scale(0.95);
+}
+
+/* ── Panel ── */
+
+#ai4poors-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 65vh;
+    z-index: 2147483647;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1),
+                max-height 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    font-family: -apple-system, system-ui, 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    pointer-events: none;
+}
+
+#ai4poors-panel.ai4poors-panel-open {
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Expanded mode when showing results */
+#ai4poors-panel.ai4poors-has-result {
+    max-height: 82vh;
+}
+
+#ai4poors-panel.ai4poors-has-result .ai4poors-panel-inner {
+    max-height: 82vh;
+}
+
+/* Hide actions and input when result is showing */
+#ai4poors-panel.ai4poors-has-result #ai4poors-actions {
+    display: none !important;
+}
+
+#ai4poors-panel.ai4poors-has-result .ai4poors-custom-row {
+    display: none !important;
+}
+
+#ai4poors-panel.ai4poors-has-result .ai4poors-selection-notice {
+    display: none !important;
+}
+
+.ai4poors-panel-inner {
+    background: rgba(28, 28, 30, 0.96);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+    max-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.4);
+    transition: max-height 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ── Header ── */
+
+.ai4poors-panel-header {
+    padding: 12px 16px 0;
+    cursor: grab;
+    -webkit-user-select: none;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.ai4poors-panel-drag-handle {
+    width: 40px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 auto 10px;
+}
+
+.ai4poors-panel-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ai4poors-panel-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+    letter-spacing: -0.2px;
+}
+
+.ai4poors-close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+.ai4poors-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* ── Body ── */
+
+.ai4poors-panel-body {
+    padding: 12px 16px 16px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+/* ── Selection Notice ── */
+
+.ai4poors-selection-notice {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    background: rgba(10, 132, 255, 0.12);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: rgba(10, 132, 255, 1);
+    flex-shrink: 0;
+}
+
+.ai4poors-selection-icon {
+    font-size: 14px;
+}
+
+/* ── Action Buttons ── */
+
+.ai4poors-actions-grid {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.ai4poors-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: rgba(58, 58, 60, 0.8);
+    color: white;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
+    font-family: inherit;
+}
+
+.ai4poors-action-btn:hover {
+    background: rgba(72, 72, 74, 0.9);
+}
+
+.ai4poors-action-btn:active {
+    transform: scale(0.96);
+    background: rgba(88, 88, 92, 0.9);
+}
+
+.ai4poors-action-icon {
+    font-size: 14px;
+}
+
+.ai4poors-action-label {
+    font-size: 13px;
+}
+
+/* ── Custom Input ── */
+
+.ai4poors-custom-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.ai4poors-custom-input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(44, 44, 46, 0.8);
+    color: white;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.15s;
+}
+
+.ai4poors-custom-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.ai4poors-custom-input:focus {
+    border-color: rgba(10, 132, 255, 0.6);
+}
+
+.ai4poors-send-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(10, 132, 255, 1);
+    color: white;
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, transform 0.1s;
+    flex-shrink: 0;
+    font-family: inherit;
+}
+
+.ai4poors-send-btn:hover {
+    background: rgba(10, 132, 255, 0.85);
+}
+
+.ai4poors-send-btn:active {
+    transform: scale(0.95);
+}
+
+/* ── Result Container ── */
+
+.ai4poors-result-container {
+    background: rgba(44, 44, 46, 0.6);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.ai4poors-result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+}
+
+.ai4poors-result-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ai4poors-result-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 2px 6px;
+}
+
+.ai4poors-result-close:hover {
+    color: white;
+}
+
+.ai4poors-result-content {
+    padding: 16px;
+    font-size: 15px;
+    line-height: 1.65;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.92);
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    -webkit-overflow-scrolling: touch;
+    flex: 1 1 auto;
+    min-height: 80px;
+}
+
+.ai4poors-result-content.ai4poors-loading {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+.ai4poors-result-actions {
+    display: flex;
+    gap: 8px;
+    padding: 8px 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+}
+
+.ai4poors-copy-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    background: rgba(10, 132, 255, 1);
+    color: white;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+}
+
+.ai4poors-copy-btn:hover {
+    background: rgba(10, 132, 255, 0.85);
+}
+
+.ai4poors-open-app-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    background: rgba(52, 199, 89, 1);
+    color: white;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+}
+
+.ai4poors-open-app-btn:hover {
+    background: rgba(52, 199, 89, 0.85);
+}
+
+.ai4poors-archive-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    background: rgba(255, 159, 10, 1);
+    color: white;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+}
+
+.ai4poors-archive-btn:hover {
+    background: rgba(255, 159, 10, 0.85);
+}
+
+.ai4poors-back-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+    margin-left: auto;
+}
+
+.ai4poors-back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* ── Light Mode ── */
+
+@media (prefers-color-scheme: light) {
+    #ai4poors-trigger {
+        background: rgba(255, 255, 255, 0.9);
+        color: #1c1c1e;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .ai4poors-panel-inner {
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .ai4poors-panel-drag-handle {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .ai4poors-panel-title {
+        color: #1c1c1e;
+    }
+
+    .ai4poors-panel-title-row {
+        border-bottom-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .ai4poors-close-btn {
+        background: rgba(0, 0, 0, 0.06);
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    .ai4poors-close-btn:hover {
+        background: rgba(0, 0, 0, 0.1);
+        color: #1c1c1e;
+    }
+
+    .ai4poors-selection-notice {
+        background: rgba(10, 132, 255, 0.08);
+    }
+
+    .ai4poors-action-btn {
+        background: rgba(0, 0, 0, 0.05);
+        color: #1c1c1e;
+    }
+
+    .ai4poors-action-btn:hover {
+        background: rgba(0, 0, 0, 0.08);
+    }
+
+    .ai4poors-action-btn:active {
+        background: rgba(0, 0, 0, 0.12);
+    }
+
+    .ai4poors-custom-input {
+        background: rgba(0, 0, 0, 0.04);
+        border-color: rgba(0, 0, 0, 0.1);
+        color: #1c1c1e;
+    }
+
+    .ai4poors-custom-input::placeholder {
+        color: rgba(0, 0, 0, 0.35);
+    }
+
+    .ai4poors-custom-input:focus {
+        border-color: rgba(10, 132, 255, 0.5);
+    }
+
+    .ai4poors-result-container {
+        background: rgba(0, 0, 0, 0.03);
+        border-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .ai4poors-result-header {
+        border-bottom-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .ai4poors-result-label {
+        color: rgba(0, 0, 0, 0.45);
+    }
+
+    .ai4poors-result-close {
+        color: rgba(0, 0, 0, 0.35);
+    }
+
+    .ai4poors-result-close:hover {
+        color: #1c1c1e;
+    }
+
+    .ai4poors-result-content {
+        color: rgba(0, 0, 0, 0.88);
+    }
+
+    .ai4poors-result-content.ai4poors-loading {
+        color: rgba(0, 0, 0, 0.4);
+    }
+
+    .ai4poors-result-actions {
+        border-top-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .ai4poors-back-btn {
+        background: rgba(0, 0, 0, 0.06);
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    .ai4poors-back-btn:hover {
+        background: rgba(0, 0, 0, 0.1);
+        color: #1c1c1e;
+    }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    #ai4poors-trigger,
+    #ai4poors-panel,
+    .ai4poors-panel-inner,
+    .ai4poors-action-btn,
+    .ai4poors-send-btn {
+        transition: none;
+    }
+}
+
+/* ── Rendered Markdown Elements ── */
+
+.ai4poors-md-h2 {
+    margin: 16px 0 8px;
+    font-size: 20px;
+    font-weight: 700;
+    color: inherit;
+}
+
+.ai4poors-md-h3 {
+    margin: 14px 0 6px;
+    font-size: 17px;
+    font-weight: 600;
+    color: inherit;
+}
+
+.ai4poors-md-h4 {
+    margin: 12px 0 4px;
+    font-size: 15px;
+    font-weight: 600;
+    color: inherit;
+}
+
+.ai4poors-md-li {
+    padding-left: 14px;
+    margin: 3px 0;
+}
+
+.ai4poors-md-code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+@media (prefers-color-scheme: light) {
+    .ai4poors-md-code {
+        background: rgba(0, 0, 0, 0.06);
+    }
+}
+
+/* ── Reader Mode ── */
+
+.ai4poors-reader-result {
+    font-family: 'New York', Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    white-space: normal;
+}
+
+.ai4poors-reader-result h2 {
+    font-family: -apple-system, system-ui, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 20px 0 10px;
+    line-height: 1.3;
+}
+
+.ai4poors-reader-result h3 {
+    font-family: -apple-system, system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 16px 0 8px;
+    line-height: 1.3;
+}
+
+.ai4poors-reader-result h4 {
+    font-family: -apple-system, system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 14px 0 6px;
+    line-height: 1.3;
+}
+
+.ai4poors-reader-result strong {
+    font-weight: 600;
+}
+
+.ai4poors-reader-result em {
+    font-style: italic;
+}
+
+.ai4poors-reader-result code {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.ai4poors-reader-result div[style*="padding-left"] {
+    margin: 4px 0;
+    line-height: 1.6;
+}
+
+@media (prefers-color-scheme: light) {
+    .ai4poors-reader-result {
+        color: rgba(0, 0, 0, 0.85);
+    }
+
+    .ai4poors-reader-result code {
+        background: rgba(0, 0, 0, 0.05);
+    }
+}
+
+/* iPad / wider screens */
+@media (min-width: 768px) {
+    #ai4poors-panel {
+        left: auto;
+        right: 16px;
+        bottom: 80px;
+        max-width: 420px;
+        max-height: 70vh;
+        border-radius: 16px;
+    }
+
+    #ai4poors-panel.ai4poors-panel-open {
+        transform: translateY(0);
+    }
+
+    #ai4poors-panel.ai4poors-has-result {
+        max-height: 85vh;
+    }
+
+    #ai4poors-panel.ai4poors-has-result .ai4poors-panel-inner {
+        max-height: 85vh;
+    }
+
+    .ai4poors-panel-inner {
+        border-radius: 16px;
+    }
+
+    .ai4poors-panel-drag-handle {
+        display: none;
+    }
+}
